@@ -15,7 +15,7 @@ RUN /tmp/build/nodeSetUnsafe.sh && \
 #Install pip for Python 3
 RUN export PYTHONV=$(python3 -c "exec(\"import sys\nprint(f'{sys.version_info.major}.{sys.version_info.minor}')\")") && \ 
     apt-get update && \
-    apt-get install -y python${PYTHONV}-distutils && \
+    apt-get install -y --no-install-recommends python${PYTHONV}-distutils && \
     curl https://bootstrap.pypa.io/get-pip.py | python3
 
 #Install Playwright for Python
