@@ -30,7 +30,7 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
-          context: ./Dockerfile.3-latest
+          context: .
           load: true
           tags: ${{ env.TEST_TAG }}
       - name: Build Test Image
