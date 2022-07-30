@@ -8,7 +8,9 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  TEST_TAG: zibdie/atlassian-playwright:test
+  TEST_TAG: zibdie/atlassian-playwright:3-test
+  OFFICIAL_TAG: zibdie/atlassian-playwright:3
+  DOCKERFILE_PATH: ./Dockerfile-3
 
 jobs:
   docker:
@@ -32,7 +34,7 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ${{ env.DOCKERFILE_PATH }}
           load: true
           tags: ${{ env.TEST_TAG }}
       - name: Build Test Image
@@ -45,7 +47,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ${{ env.DOCKERFILE_PATH }}
           platforms: linux/amd64
           push: true
-          tags: zibdie/atlassian-playwright:latest
+          tags: ${{ env.OFFICIAL_TAG }}
