@@ -30,3 +30,7 @@ You can find the _\<Atlassian Default Image Version\>_ at the link in the **What
 Each CI/CD script has a cron job set to run every week. Therefore, you will always have the latest version of Playwright and therefore, the latest version of Google Chrome, Mozilla Firefox, and Webkit.
 
 If you wish to see the browser versions that Playwright currently uses, see: https://github.com/microsoft/playwright#documentation--api-reference
+
+## Does This Image Only Work In Atlassian Bitbucket Pipelines?
+
+Technically it should not but you should understand there will be little to no support from Atlassian so proceed with caution if you wish.
