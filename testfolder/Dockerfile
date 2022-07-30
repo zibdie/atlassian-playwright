@@ -1,4 +1,4 @@
-FROM zibdie/atlassian-playwright:test
+FROM zibdie/atlassian-playwright:3-test
 ENV CI true
 
 WORKDIR /tmp/script
