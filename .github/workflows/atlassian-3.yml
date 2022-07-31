@@ -1,4 +1,4 @@
-name: ci
+name: Atlassian 3
 
 on:
   push:
@@ -10,16 +10,12 @@ on:
 env:
   TEST_TAG: zibdie/atlassian-playwright:3-test
   OFFICIAL_TAG: zibdie/atlassian-playwright:3
-  DOCKERFILE_PATH: ./Dockerfile-3
+  DOCKERFILE_PATH: ./Atlassian-3
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Venv
-        run: printenv
-      - name: Run Venv
-        run: echo ${TEST_TAG}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up QEMU
@@ -31,7 +27,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-      - name: Build and export to Docker
+      - name: Build and export to DockerHub
         uses: docker/build-push-action@v3
         with:
           context: ${{ env.DOCKERFILE_PATH }}
@@ -51,10 +47,3 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ env.OFFICIAL_TAG }}
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          repository: zibdie/atlassian-playwright
-          readme-filepath: ./README.md
