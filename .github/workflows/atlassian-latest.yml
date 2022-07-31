@@ -35,7 +35,7 @@ jobs:
           tags: ${{ env.TEST_TAG }}
       - name: Build Test Image
         run: |
-          docker build -t testimg ./testfolder/
+          docker build -t testimg -f ./testfolder/Dockerfile.latest-test ./testfolder/
       - name: Remove Test Image from DockerHub
         run: |
           echo "Test was successful, removing test image"
