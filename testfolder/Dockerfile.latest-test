@@ -1,4 +1,0 @@
-FROM zibdie/atlassian-playwright:latest-test
-ENV CI true
-
-RUN yarn init -y && yarn create playwright --quiet --lang=js && yarn playwright test

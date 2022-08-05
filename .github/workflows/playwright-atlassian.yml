@@ -1,5 +1,4 @@
-name: Atlassian Latest
-
+name: Playwright Atlassian
 on:
   push:
     branches:
@@ -8,9 +7,10 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  TEST_TAG: zibdie/atlassian-playwright:latest-test
-  OFFICIAL_TAG: zibdie/atlassian-playwright:latest
-  DOCKERFILE_PATH: ./Atlassian-3
+  TEST_TAG: zibdie/e2e-playwright:atlassian-test
+  OFFICIAL_TAG: zibdie/e2e-playwright:atlassian
+  MAIN_REPO_NAME: zibdie/e2e-playwright
+  DOCKERFILE_PATH: /base/
 
 jobs:
   docker:
@@ -27,30 +27,32 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-      - name: Build and export to DockerHub
+      - name: Build and export test image to DockerHub
         uses: docker/build-push-action@v3
         with:
-          context: ${{ env.DOCKERFILE_PATH }}
+          file: ${{ env.GITHUB_WORKSPACE }}/base/playwright/Dockerfile.playwright.atlassian
           load: true
           tags: ${{ env.TEST_TAG }}
-      - name: Build Test Image
+      - name: Create Test Dockerfile and Test Build
         run: |
-          docker build -t testimg -f ./testfolder/Dockerfile.latest-test ./testfolder/
+          mkdir /tmp/testdocker
+          node ./base/makeTestDockerfile.js
+          docker build -t test_tag /tmp/testdocker
+        env:
+          BASE_IMG: ${{env.TEST_TAG}}
       - name: Remove Test Image from DockerHub
         run: |
-          echo "Test was successful, removing test image"
           docker run --rm ${{ env.TEST_TAG }}
-      - name: Build and push
+      - name: Build and push image to DockerHub
         uses: docker/build-push-action@v3
         with:
-          context: ${{ env.DOCKERFILE_PATH }}
-          platforms: linux/amd64
-          push: true
+          file: ${{ env.GITHUB_WORKSPACE }}/base/playwright/Dockerfile.playwright.atlassian
+          load: true
           tags: ${{ env.OFFICIAL_TAG }}
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-          repository: zibdie/atlassian-playwright
-          readme-filepath: ./README.md
+          repository: ${{ env.MAIN_REPO_NAME }}
+          readme-filepath: ./base/playwright/README.md
