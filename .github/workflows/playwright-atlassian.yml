@@ -7,9 +7,9 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  TEST_TAG: zibdie/e2e-playwright:atlassian-test
-  OFFICIAL_TAG: zibdie/e2e-playwright:atlassian
-  MAIN_REPO_NAME: zibdie/e2e-playwright
+  TEST_TAG: zibdie/e2e:playwright-atlassian-test
+  OFFICIAL_TAG: zibdie/e2e:playwright-atlassian
+  MAIN_REPO_NAME: zibdie/e2e
   DOCKERFILE_PATH: /base/
 
 jobs:

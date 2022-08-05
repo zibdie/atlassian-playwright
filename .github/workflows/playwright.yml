@@ -7,9 +7,9 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  TEST_TAG: zibdie/e2e-playwright:latest-test
-  OFFICIAL_TAG: zibdie/e2e-playwright:latest
-  MAIN_REPO_NAME: zibdie/e2e-playwright
+  TEST_TAG: zibdie/e2e:playwright-test
+  OFFICIAL_TAG: zibdie/e2e:playwright
+  MAIN_REPO_NAME: zibdie/e2e
   DOCKERFILE_PATH: /base/
 
 jobs:
@@ -56,4 +56,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           repository: ${{ env.MAIN_REPO_NAME }}
-          readme-filepath: ./base/playwright/README.md
+          readme-filepath: ./README.md
