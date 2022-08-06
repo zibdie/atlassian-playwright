@@ -11,6 +11,7 @@ This repository containers Docker images to help you with your frontend end-to-e
 - Microsoft Playwright
 - Puppeteer [coming soon]
 - Selenium [coming soon]
+- Cypress [coming soon]
 
 ## How new/updated are these images?
 
