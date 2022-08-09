@@ -19,4 +19,10 @@ Each supported image has a CI/CD pipeline set to run a cron job every week. Ther
 
 ## Some of these images has pretty big file sizes! How come?
 
-These images were meant to include all necessary tools in your pipeline, hence the size. The reason why I did this as it eliminates adding time to the build process as most services charge you by build time.
+These images were meant to include all necessary tools in your pipeline, hence the size. The reason why I did this as it eliminates adding time to the build process as most services charge you by build time instead of space. You can see it from the pricing models of many CI/CD services
+
+* https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
+* https://www.atlassian.com/software/bitbucket/pricing [See 'build minutes' section]
+* https://about.gitlab.com/pricing/
+
+Therefore, it is in your best interest to ensure your base image includes everything you need to ensure you are not wasting precious build minutes installing dependancies before your real code runs. This docker image includes everything you need.
