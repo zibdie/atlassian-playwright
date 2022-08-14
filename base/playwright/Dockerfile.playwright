@@ -21,6 +21,7 @@ RUN echo '-----> Installing Playwright for Node' && \
     /tmp/build/nodeSetUnsafe.sh && \
     npm install --global yarn && \
     npx playwright install && \
+    npx playwright install-deps && \
     echo '-----> Playwright for Node Installation Complete'
 
 RUN echo '-----> Installing Playwright for Python' && \
