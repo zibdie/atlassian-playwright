@@ -1,4 +1,4 @@
-# zibdie/e2e-playwright
+# zibdie/e2e Playwright Version
 
 This image does all this for you so you only need to install Playwright from your package.json (or requirements.txt) without worrying about redownloading Playwright's custom browsers or system dependancies.
 
