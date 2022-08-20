@@ -17,7 +17,7 @@ This repository containers Docker images to help you with your frontend end-to-e
 
 Each supported image has a CI/CD pipeline set to run a cron job every week. Therefore, you will always have the latest version of your chosen library and all dependancies necessary for it. Each build is tested to ensure it works as expected.
 
-You can see when these Docker images were last built by checking Docker Hub: https://github.com/zibdie/docker-e2e
+You can see when these Docker images were last built by checking Docker Hub: https://hub.docker.com/r/zibdie/e2e
 
 ## Some of these images has pretty big file sizes! How come?
 
