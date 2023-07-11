@@ -1,4 +1,4 @@
-FROM atlassian/default-image:3
+FROM atlassian/default-image:4
 
 WORKDIR /tmp
 COPY ./base/build /tmp/build
